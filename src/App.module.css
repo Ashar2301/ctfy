@@ -1,0 +1,16 @@
+
+.div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ecf0f1;
+  min-height: 100vh;
+}
+@media screen and (max-width : 768px) {
+  .div{
+ 
+    background-color: #ecf0f1;
+  }
+  
+}

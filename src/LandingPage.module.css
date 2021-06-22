@@ -1,0 +1,19 @@
+.svg{
+    
+    font-size: 64px;
+    font-family: Arial Black;
+    /* dominant-baseline: central; */
+    text-anchor: middle;
+}
+@media screen and (max-width : 768px) {
+        #container{
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #left,#right{
+            width: 100%;
+            min-height: 100vh;
+            
+        }
+}

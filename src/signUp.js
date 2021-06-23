@@ -7,7 +7,10 @@ import 'firebase/firestore';
 const SignUp=()=>{
     const [error,setError] = useState("");
     const [loading,setLoading] = useState(false);
-    const {signup,currentUser} = useAuth();
+    const {signup,currentUser} = useAuth(true);
+    const [email,setEmail] = useState(true);
+    const [name,setName] = useState(true);
+    const [password,setPassword] = useState(true);
 
     const onSignInClick=()=>{
         let emailRef = document.getElementById("email");
@@ -53,7 +56,40 @@ const SignUp=()=>{
             
             setLoading(false);  
     }
-
+   const onNameChange=(event)=>{
+        if(event.target.value.length <1)
+        {
+            setName(true);
+           return setError('Enter Your Name')
+        }
+        else{
+            setName(false)
+            setError('')
+        }
+    }
+    const onEmailChange=(event)=>{
+        const value = event.target.value;
+        const pattern = /\S+@\S+\.\S+/;
+        const test = pattern.test(value);
+        if(test){
+          setEmail(false)
+          setError('')
+        }
+        else{
+          setEmail(true)
+          return setError('Enter A Valid Email ID')
+        }
+    }
+    const onPasswordChange=(event)=>{
+        if(event.target.value.length<6){
+            setPassword(true)
+            return setError('Password Must Be Atleast 6 Letters/Numbers')
+        }
+        else{
+            setPassword(false)
+            setError('')
+        }
+    }
     return(
         
             <section className="flex flex-col items-center justify-center ">
@@ -90,13 +126,13 @@ const SignUp=()=>{
 
 */}
                
-                    <input id="email"className="py-2 px-2 my-5  rounded-lg w-4/6 mx-auto" style={{backgroundColor:'#ecf0f1'}} type="email" placeholder="Enter Email"></input>
-                    <input id="name" className="py-2 px-2 my-5  rounded-lg w-4/6 mx-auto" style={{backgroundColor:'#ecf0f1'}} type="text" placeholder="Enter Name"></input>
-                    <input id="password" className="py-2 px-2 my-5  rounded-lg w-4/6 mx-auto" style={{backgroundColor:'#ecf0f1'}} type="password" placeholder="Enter Password"></input>
-                    <input id="cpassword" className="py-2 px-2 my-5  rounded-lg w-4/6 mx-auto" style={{backgroundColor:'#ecf0f1'}} type="password" placeholder="Confirm Password"></input>
+                    <input id="email"className="py-2 px-2 my-5  rounded-lg w-4/6 mx-auto" onChange={onEmailChange} style={{backgroundColor:'#ecf0f1'}} type="email" placeholder="Enter Email"></input>
+                    <input id="name" className="py-2 px-2 my-5  rounded-lg w-4/6 mx-auto" onChange={onNameChange} style={{backgroundColor:'#ecf0f1'}} type="text" placeholder="Enter Name"></input>
+                    <input id="password" className="py-2 px-2 my-5  rounded-lg w-4/6 mx-auto" onChange={onPasswordChange} style={{backgroundColor:'#ecf0f1'}} type="password" placeholder="Enter Password"></input>
+                    <input id="cpassword" className="py-2 px-2 my-5  rounded-lg w-4/6 mx-auto"  style={{backgroundColor:'#ecf0f1'}} type="password" placeholder="Confirm Password"></input>
                     
                     <Link onClick={onSignInClick} className="p-2 my-5 border-2 rounded-lg w-4/6  text-center" 
-                   style={{marginLeft:"auto",marginRight:"auto",backgroundColor:'#7ed6df'}}><button disabled={loading}  className="text-center">SIGN UP</button></Link>
+                   style={{marginLeft:"auto",marginRight:"auto",backgroundColor:'#7ed6df'}}><button disabled={loading ||email || name || password}  className="text-center" >SIGN UP</button></Link>
                  
                     
               

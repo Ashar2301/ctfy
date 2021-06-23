@@ -1048,6 +1048,8 @@ import Classes from './dashboard.module.css'
     const onAcceptCall=()=>{
         document.getElementById('callOverlay').classList.remove('flex');
         document.getElementById('callOverlay').classList.add('hidden');
+        document.getElementById('videoCallBtn').classList.add('hidden')
+        document.getElementById('voiceCallBtn').classList.add('hidden')
 
         if(call.type === 'video'){
             document.getElementById('overlay3').classList.add('flex');
@@ -1093,6 +1095,11 @@ import Classes from './dashboard.module.css'
         document.getElementById('overlay3').classList.add('hidden');
         document.getElementById('voiceCallOverlay').classList.remove('flex');
         document.getElementById('voiceCallOverlay').classList.add('hidden');
+        document.getElementById('videoCallBtn').classList.remove('hidden')
+        document.getElementById('voiceCallBtn').classList.remove('hidden')
+        document.getElementById('videoCallBtn').classList.add('flex')
+        document.getElementById('voiceCallBtn').classList.add('flex')
+        window.location.reload();
         
     const webcamVideo = document.getElementById('localVideo');
     if(webcamVideo.srcObject !== null){

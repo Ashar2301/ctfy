@@ -4,7 +4,7 @@ import 'firebase/firestore';
 import 'firebase/storage';
 import { IconContext } from "react-icons";
 import {useAuth} from './context/AuthContext'
-import {AiFillCamera,AiFillAudio,AiFillPlaySquare,AiFillCloseSquare,AiFillDelete} from 'react-icons/ai'
+import {AiFillCamera,AiFillAudio,AiFillPlaySquare,AiFillCloseSquare,AiFillDelete,AiOutlineArrowLeft} from 'react-icons/ai'
 import { MdArrowDropDownCircle } from "react-icons/md";
 import {HiUserCircle} from 'react-icons/hi'
 import { BsFillCameraVideoFill,BsPersonSquare ,BsMusicNoteBeamed,BsFillBackspaceFill} from "react-icons/bs";
@@ -1131,7 +1131,11 @@ import Classes from './dashboard.module.css'
        <div id="blur" className="w-full">
             <div className="relative">
             <div className=" flex justify-between" style={{height:"10vh",borderBottom:'1px solid #bdc3c7',backgroundColor:'#93dbe9'}}>
-                <button onClick={onBackClick} id={Classes.backBtn} className="hidden"><h1>back</h1></button>
+                <button onClick={onBackClick} id={Classes.backBtn} className="hidden">
+                    <IconContext.Provider  value={{ color: "#2980b9", size:"5vh" }}>
+                                                <AiOutlineArrowLeft/>         
+                    </IconContext.Provider>
+                </button>
                 <img src={ctfy} id={Classes.navbarLogo} className="relative " style={{width:'7vw',height:'7vh',margin:'1vw',padding:'0'}}></img>
                 <input id={Classes.searchBarNav} onClick={toggleModal} className="p-8 rounded-3xl outline-none" style={{backgroundColor:'#ecf0f1'}} placeholder="SEARCH"></input>
                 <div className="flex p-6  justify-center relative items-center" style={{width:'20vw'}}>
@@ -1152,7 +1156,7 @@ import Classes from './dashboard.module.css'
                         </div>
                     </div>
                     <div onClick={onDropdownClick} className="absolute right-4" style={{top:'25%'}}>
-                        <IconContext.Provider  value={{ color: "#81ecec", size:"3vh" }}>
+                        <IconContext.Provider  value={{ color: "#2980b9", size:"3vh" }}>
                                     <MdArrowDropDownCircle/>         
                         </IconContext.Provider>
                     </div>
@@ -1200,8 +1204,7 @@ import Classes from './dashboard.module.css'
 
 
     <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-50" id="overlay2">
-        <div class="bg-gray-200  py-2 px-3 rounded shadow-xl text-gray-800 items-center justify-center flex flex-row relative"
-         style={{width:"50vw",height:"50vh"}}>
+        <div className={[Classes.fileOverlay,'bg-gray-200  py-2 px-3 rounded shadow-xl text-gray-800 items-center justify-center flex flex-row relative'].join(" ")}>
              <div className="absolute p-4" style={{top:'0',right:'0'}}>
                  <button onClick={minimizeFileModal}>
                                 <IconContext.Provider  value={{ color: "#81ecec", size:"5vh" }}>
@@ -1215,16 +1218,15 @@ import Classes from './dashboard.module.css'
             </div>
             <div className="flex flex-col">
                 {showFileDetails()}
-                <button className="text-white border-2 border-gray-200 rounded-md mt-3" 
-                style={{width:"5vw" , height:"5vh",backgroundColor:'#7ed6df'}} onClick={onSendFileClick}>SEND</button>
+                <button className="text-white border-2 border-gray-200 rounded-md mt-3 w-full" 
+                style={{width:"15vw" , height:"5vh",backgroundColor:'#7ed6df'}} onClick={onSendFileClick}>SEND</button>
             </div>
         </div>
     </div>
 
          <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10" id="overlay3">
            
-                    <div class="bg-gray-200  py-2 px-3 rounded shadow-xl text-gray-800 items-center justify-center flex flex-row relative"
-                style={{width:"80vw",height:"80vh"}}>
+                    <div className={[Classes.videoCallOverlay,'bg-gray-200  py-2 px-3 rounded shadow-xl text-gray-800 items-center justify-center flex flex-row relative'].join(" ")}>
                     <div className="w-2/6 flex flex-col items-center justify-center">
                         <div className="border-2 border-red-400 w-full" style={{height:'30vh'}}>
                         <video className="w-full" autoPlay playsInline id="localVideo" style={{height:'30vh'}}></video>
@@ -1244,8 +1246,7 @@ import Classes from './dashboard.module.css'
 
         <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-10" id="voiceCallOverlay">
            
-                    <div class="bg-gray-200  py-2 px-3 rounded shadow-xl text-gray-800 items-center justify-center flex flex-row relative"
-                style={{width:"40vw",height:"40vh"}}>
+                    <div className={[Classes.voiceCallOverlay,'bg-gray-200  py-2 px-3 rounded shadow-xl text-gray-800 items-center justify-center flex flex-row relative'].join(' ')}>
                     <div className="w-2/6 flex flex-col items-center justify-center">
                        <div>
                             {users.pfp === undefined ?
@@ -1275,7 +1276,7 @@ import Classes from './dashboard.module.css'
                 </div>
         </div>
         <div class="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center z-50" id="callOverlay">
-                 <div class="bg-gray-200  py-2 px-3 rounded shadow-xl text-gray-800 items-center justify-center flex flex-row relative"         style={{width:"35vw",height:"35vh"}}>
+                 <div className={[Classes.callOverlay,"bg-gray-200  py-2 px-3 rounded shadow-xl text-gray-800 items-center justify-center flex flex-row relative"].join(' ')} >
                      <h1>INCOMING {call.type} CALL FROM {call.caller}</h1>
                      <button onClick={onAcceptCall} className="m-4 p-2 border-2 border-blue-400">ACCEPT</button>
                      <button onClick={onDeclineCall} className="m-4 p-2 border-2 border-red-400">DECLINE</button>

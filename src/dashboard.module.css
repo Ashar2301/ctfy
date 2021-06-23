@@ -39,6 +39,22 @@
     left: -2%;
     top: 100%;
 }
+.fileOverlay{
+    width: 50vw;
+    height: 50vh;
+}
+.videoCallOverlay{
+    width: 80vw;
+    height: 80vh;
+}
+.voiceCallOverlay{
+    width: 40vw;
+    height:40vh
+}
+.callOverlay{
+    width: 35vw;
+    height: 35vh;
+}
 @media screen and (max-width:768px) {
     #navbarName,#navbarLogo{
         display: none;
@@ -84,5 +100,18 @@
     .navbarDropdown{
         left: -18vw;
     }
-    
+    .fileOverlay{
+        width: 100vw;
+    }
+    .videoCallOverlay{
+        width: 95vw;
+        height: 95vh;
+    }
+    .voiceCallOverlay{
+        width: 70vw;
+        height: 70vh;
+    }
+    .callOverlay{
+        width: 100vw;
+    }
 }

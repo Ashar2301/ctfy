@@ -30,7 +30,7 @@ const LogIn=()=>{
                // window.alert("Log In Successfull.")
                 // window.location.replace("https://ctfy.netlify.app/dashboard")
                 history.push('/dashboard');
-                //window.location.reload();
+                window.location.reload();
             })
             .catch((err)=>{
                 console.log(err)

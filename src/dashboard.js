@@ -15,6 +15,7 @@ import MessageTemplate from './messageTemplate';
 import ProfileTemplate from './profileTemplate';
 import ContactTemplate from './contactTemplate';
 import ctfy from './ctfy2.png'
+import { useHistory } from 'react-router'
 
 import Classes from './dashboard.module.css'
 
@@ -22,6 +23,7 @@ import Classes from './dashboard.module.css'
 
   const [users,setUser] = useState("")
     const {currentUser , logout} = useAuth();
+    const history = useHistory();
    const firestore = firebase.firestore();
     const [search,setSearch] = useState("");
     const [searchResults,setSearchResults] = useState([]);
@@ -619,7 +621,8 @@ import Classes from './dashboard.module.css'
 
     const onLogOutClick=async()=>{
       await  logout();
-        window.location.replace('https://ctfy.netlify.app/')
+      history.push('/');
+      window.location.reload();
     }
    
     const profile=()=>{

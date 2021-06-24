@@ -12,8 +12,8 @@ function App() {
       <Router>
 
          <Switch>
-         <Route path="https://ctfy.netlify.app/" exact component={LandingPage}></Route> 
-        <ProtectedRoute path="https://ctfy.netlify.app/dashboard" exact component={Dashboard}></ProtectedRoute> 
+         <Route path="/" exact component={LandingPage}></Route> 
+        <ProtectedRoute path="/dashboard" exact component={Dashboard}></ProtectedRoute> 
         <Route path="*" exact component={()=>"404 NOT FOUND"}></Route>
         </Switch>
       </Router>

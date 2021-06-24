@@ -3,10 +3,12 @@ import {useState} from 'react'
 import {useAuth} from './context/AuthContext'
 import  StyledFirebaseAuth  from 'react-firebaseui/StyledFirebaseAuth'
 import {auth} from './firebase'
+import { useHistory } from 'react-router'
 import firebase  from 'firebase'
 
 const LogIn=()=>{
     const [error,setError] = useState("");
+    const history = useHistory();
     const [loading,setLoading] = useState(false);
     const [isSignedIn , setSignIn] = useState(false);
     const {login,currentUser,logout} = useAuth();
@@ -26,7 +28,9 @@ const LogIn=()=>{
             })
             .then((id)=>{
                // window.alert("Log In Successfull.")
-                 window.location.replace("https://ctfy.netlify.app/dashboard")
+                // window.location.replace("https://ctfy.netlify.app/dashboard")
+                history.push('/dashboard');
+                window.location.reload();
             })
             .catch((err)=>{
                 console.log(err)
@@ -47,7 +51,8 @@ const LogIn=()=>{
             login(email.value,password.value)
             .then(()=>{
                // window.alert("Log In Successfull.")
-                 window.location.replace("https://ctfy.netlify.app/dashboard")
+               history.push('/dashboard');
+               window.location.reload();
             })
             .catch((error)=>{
                 return setError("Failed To Log In" + error.message)

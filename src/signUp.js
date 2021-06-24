@@ -2,10 +2,12 @@ import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import {useAuth} from './context/AuthContext'
 import firebase from 'firebase/app';
+import { useHistory } from 'react-router'
 import 'firebase/firestore';
 
 const SignUp=()=>{
     const [error,setError] = useState("");
+    const history = useHistory();
     const [loading,setLoading] = useState(false);
     const {signup,currentUser} = useAuth(true);
     const [email,setEmail] = useState(true);
@@ -40,7 +42,8 @@ const SignUp=()=>{
             .then((id)=>{
                 console.log("User Added With ID = " + id)
                 window.alert("Sign In Successfull . Redirecting To Log In Page")
-                window.location.replace("https://ctfy.netlify.app/")
+                history.push('/');
+                window.location.reload();
             })
             .catch((err)=>{
                 console.log(err)

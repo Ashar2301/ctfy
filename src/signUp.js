@@ -40,7 +40,7 @@ const SignUp=()=>{
             .then((id)=>{
                 console.log("User Added With ID = " + id)
                 window.alert("Sign In Successfull . Redirecting To Log In Page")
-                window.location.replace("http://localhost:3000")
+                window.location.replace("https://ctfy.netlify.app/")
             })
             .catch((err)=>{
                 console.log(err)

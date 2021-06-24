@@ -25,8 +25,8 @@ const LogIn=()=>{
                 pfp:auth.currentUser.photoURL
             })
             .then((id)=>{
-                window.alert("Log In Successfull.")
-                 window.location.replace("http://localhost:3000/dashboard")
+               // window.alert("Log In Successfull.")
+                 window.location.replace("https://ctfy.netlify.app/dashboard")
             })
             .catch((err)=>{
                 console.log(err)
@@ -46,8 +46,8 @@ const LogIn=()=>{
             setLoading(true)
             login(email.value,password.value)
             .then(()=>{
-                window.alert("Log In Successfull.")
-                 window.location.replace("http://localhost:3000/dashboard")
+               // window.alert("Log In Successfull.")
+                 window.location.replace("https://ctfy.netlify.app/dashboard")
             })
             .catch((error)=>{
                 return setError("Failed To Log In" + error.message)

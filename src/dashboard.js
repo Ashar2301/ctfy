@@ -619,7 +619,7 @@ import Classes from './dashboard.module.css'
 
     const onLogOutClick=async()=>{
       await  logout();
-        window.location.replace('http://localhost:3000')
+        window.location.replace('https://ctfy.netlify.app/')
     }
    
     const profile=()=>{

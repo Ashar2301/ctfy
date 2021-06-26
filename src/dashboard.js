@@ -983,7 +983,7 @@ import Classes from './dashboard.module.css'
                     {
                     pc.ontrack = (event) => {
                         event.streams[0].getTracks().forEach((track) => {
-                            
+                            console.log('videos')
                             remoteStream.addTrack(track);
                         });
                             };

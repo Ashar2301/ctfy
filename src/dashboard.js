@@ -140,7 +140,7 @@ import Classes from './dashboard.module.css'
                   };
         
                   await callDoc.update({ answer });
-        
+        console.log('CALLL ANSWEREDDDDD !!!')
                   offerCandidates.onSnapshot((snapshot) => {
                       snapshot.docChanges().forEach((change) => {
                     //  console.log(change);
@@ -1030,7 +1030,7 @@ import Classes from './dashboard.module.css'
             // Listen for remote answer
             callDoc.onSnapshot((snapshot) => {
             const data = snapshot.data();
-            if (!pc.currentRemoteDescription && data?.answer) {
+            if (!pc.currentRemoteDescription && data.answer) {
                 const answerDescription = new RTCSessionDescription(data.answer);
                 pc.setRemoteDescription(answerDescription);
             }

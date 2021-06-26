@@ -113,7 +113,7 @@ import Classes from './dashboard.module.css'
 
     useEffect(async()=>{
         if(answer === true && pc!== null && pc!=undefined){
-                
+            console.log('CALLL ANSWEREDDDDD !!!')
                   const callId = call.id;
                   const callDoc = firestore.collection('calls').doc(callId);
                   const answerCandidates = callDoc.collection('answerCandidates');
@@ -140,7 +140,7 @@ import Classes from './dashboard.module.css'
                   };
         
                   await callDoc.update({ answer });
-        
+        console.log('CALLL ANSWEREDDDDD !!!')
                   offerCandidates.onSnapshot((snapshot) => {
                       snapshot.docChanges().forEach((change) => {
                     //  console.log(change);
@@ -927,6 +927,7 @@ import Classes from './dashboard.module.css'
       const [pc,Setpc] = useState();
 
       const videoCallClick=async()=>{
+        console.log('CALLL ANSWEREDDDDD !!!')
         document.getElementById('overlay3').classList.add('flex');
         document.getElementById('overlay3').classList.remove('hidden');       
         setType('video')
@@ -1030,7 +1031,7 @@ import Classes from './dashboard.module.css'
             // Listen for remote answer
             callDoc.onSnapshot((snapshot) => {
             const data = snapshot.data();
-            if (!pc.currentRemoteDescription && data?.answer) {
+            if (!pc.currentRemoteDescription && data.answer) {
                 const answerDescription = new RTCSessionDescription(data.answer);
                 pc.setRemoteDescription(answerDescription);
             }
@@ -1049,6 +1050,7 @@ import Classes from './dashboard.module.css'
     }
 
     const onAcceptCall=()=>{
+        console.log('CALLL ANSWEREDDDDD !!!')
         document.getElementById('callOverlay').classList.remove('flex');
         document.getElementById('callOverlay').classList.add('hidden');
         document.getElementById('videoCallBtn').classList.add('hidden')

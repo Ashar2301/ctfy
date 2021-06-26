@@ -85,7 +85,7 @@ import Classes from './dashboard.module.css'
                db.collection('Users').doc(temp[0]).get().then((doc2)=>{
                    var pfp = doc2.data().pfp;
                    temp.push(pfp);
-                  console.log(temp)
+                 // console.log(temp)
                    setContactList(prevcontactList => [...prevcontactList , temp]);
                })
                
@@ -94,7 +94,7 @@ import Classes from './dashboard.module.css'
                  db.collection(currentUser.email).doc(doc.id).collection('messages').orderBy('time').onSnapshot(snapshot=>{
                     snapshot.docChanges().forEach(change =>{
                        if(change.type === 'added'){
-                           console.log(change.doc.id);
+                           //console.log(change.doc.id);
                            setAllChats(prebChats => [...prebChats , {"to" : doc.id , "message":change.doc.data() , "id":change.doc.id}])
                        }
                        else if(change.type === 'modified'){
@@ -120,7 +120,7 @@ import Classes from './dashboard.module.css'
                   const offerCandidates = callDoc.collection('offerCandidates');
         
                   
-                      console.log('happening')
+                     // console.log('happening')
                     pc.onicecandidate = (event) => {
                         event.candidate && answerCandidates.add(event.candidate.toJSON());
                     };
@@ -143,7 +143,7 @@ import Classes from './dashboard.module.css'
         
                   offerCandidates.onSnapshot((snapshot) => {
                       snapshot.docChanges().forEach((change) => {
-                      console.log(change);
+                    //  console.log(change);
                       if (change.type === 'added') {
                           let data = change.doc.data();
                           pc.addIceCandidate(new RTCIceCandidate(data));
@@ -226,11 +226,11 @@ import Classes from './dashboard.module.css'
            
         })
         if(flag){
-            console.log('upper')
+           // console.log('upper')
             setCurrentChat(dataA) ; 
         }
         else{
-            console.log(obj.name+ obj.email +users.email)
+           // console.log(obj.name+ obj.email +users.email)
           await  db.collection(currentUser.email).doc(obj.email).set({
                 user1:[currentUser.email , users.name],
                 user2:[obj.email,obj.name]
@@ -252,16 +252,16 @@ import Classes from './dashboard.module.css'
             var temp = [obj.email,obj.name,obj.pfp]
             setContactList(prevcontactList => [...prevcontactList , temp]);
             setCurrentChat(temp)
-           console.log('lower') 
+          // console.log('lower') 
         }
     }
 
     const deleteMessage=async(id)=>{
-        console.log(id)
-        console.log(currentChat[0])
+        //console.log(id)
+       // console.log(currentChat[0])
         
         await firestore.collection(currentUser.email).doc(currentChat[0]).collection('messages').doc(id).delete().then(()=>{
-            console.log('deleted')
+            //console.log('deleted')
         })
 
         
@@ -385,7 +385,7 @@ import Classes from './dashboard.module.css'
     }
 
     const hideElements=()=>{
-        console.log('hide' + pageNo)
+       // console.log('hide' + pageNo)
         let width = window.screen.width
         if(width <= 768){
             if(pageNo == 1){
@@ -406,7 +406,7 @@ import Classes from './dashboard.module.css'
         }
     }
     const onBackClick=()=>{
-        console.log(pageNo)
+      //  console.log(pageNo)
         if(pageNo == 2){
            // setPageNo(1);
            pageNo = 1;
@@ -459,7 +459,7 @@ import Classes from './dashboard.module.css'
 
     const deleteAllChat=async(id)=>{
         await firestore.collection(currentUser.email).doc(id).delete().then(()=>{
-            console.log('DELETED')
+           // console.log('DELETED')
         })
         let del =0;
         contactList.map((data,index)=>{
@@ -491,7 +491,7 @@ import Classes from './dashboard.module.css'
         
     }
     const onSend = async()=>{
-        console.log('here')
+       // console.log('here')
         const db =firebase.firestore();
         const time = new Date();
         await db.collection(currentUser.email).doc(currentChat[0]).collection('messages').add({
@@ -521,7 +521,7 @@ import Classes from './dashboard.module.css'
 
     const onSelectFileChange=(event)=>{
         setSelectedFile(event.target.files[0]);
-        console.log(event.target.files[0])
+       // console.log(event.target.files[0])
         let obj = document.getElementById('overlay2')
         obj.classList.toggle('flex')
         obj.classList.toggle('hidden')
@@ -948,7 +948,7 @@ import Classes from './dashboard.module.css'
                     {
                     pc.ontrack = (event) => {
                         event.streams[0].getTracks().forEach((track) => {
-                            console.log('happening')
+                            //console.log('happening')
                             remoteStream.addTrack(track);
                         });
                             };
